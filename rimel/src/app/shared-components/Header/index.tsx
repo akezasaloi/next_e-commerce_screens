@@ -1,5 +1,3 @@
-import Navbar from "../nav-bar";
-
 
 function Header() {
  return (
