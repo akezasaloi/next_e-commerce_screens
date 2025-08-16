@@ -1,3 +1,4 @@
+import Image from "next/image"; 
 import { FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
@@ -55,9 +56,11 @@ export default function ProductCarousel({
               <IoEyeOutline className="text-black" size={18} />
             </button>
           </div>
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            width={140}
+            height={120}
             className="w-[140px] h-[120px] object-contain mt-14"
           />
           {product.isCart && (

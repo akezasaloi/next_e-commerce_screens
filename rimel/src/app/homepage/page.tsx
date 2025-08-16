@@ -337,7 +337,7 @@ export default function TodaysDealsPage() {
       <div className="flex justify-between items-center mb-7">
         <div className="flex items-center gap-2">
           <span className="w-5 h-10 rounded ml-1.5 bg-[#DB4444]"></span>
-          <span className="font-semibold text-lg ml-2 text-[#DB4444]">Today's</span>
+          <span className="font-semibold text-lg ml-2 text-[#DB4444]">Today&apos;s</span>
         </div>
         <div className="flex gap-2 pr-20">
           <button
@@ -380,8 +380,8 @@ export default function TodaysDealsPage() {
             acc.push(curr);
             if (idx < arr.length - 1) acc.push(<span key={idx + 'colon'} className="text-[22px] font-bold text-[#DB4444] mx-1">:</span>);
             return acc;
-          }, [] as any[])}
-        </div>
+          }, [] as React.ReactNode[])}       
+           </div>
       </div>
 
 
