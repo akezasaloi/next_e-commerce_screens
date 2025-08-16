@@ -8,6 +8,9 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Button from "@/app/shared-components/Button";
 import Header from "../shared-components/Header";
 import Navbar from "../shared-components/nav-bar";
+import Category from "./components/categories";
+import SellingProducts from "./components/this-month";
+import EnhanceYourProduct from "./components/ad";
 
 function useCountdown(target: Date | null) {
   const [now, setNow] = useState<Date | null>(target ? new Date() : null);
@@ -395,7 +398,9 @@ export default function TodaysDealsPage() {
           View All Products
         </Button>
       </div>
-
+      <Category/>
+      <SellingProducts/>
+      <EnhanceYourProduct/>
       <ExploreProducts
         products={gridProducts}
         page={gridPage}
@@ -403,6 +408,7 @@ export default function TodaysDealsPage() {
         itemsPerPage={10} 
         maxPage={gridMaxPage}
       />
+      
       
     </div>
     <Footer/>
