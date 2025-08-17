@@ -22,7 +22,7 @@ const products = [
     rating: 4,
     reviews: 95,
     image: "/images/canon-camera.png",
-    isCart: true
+    isCart: false
   },
   {
     id: 3,
