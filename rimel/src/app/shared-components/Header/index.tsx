@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MdSearch, MdShoppingCart, MdPerson, MdFavorite } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";

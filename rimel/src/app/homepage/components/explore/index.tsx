@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { FiChevronLeft, FiChevronRight, FiHeart } from "react-icons/fi";
+import {  FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
 
 const products = [

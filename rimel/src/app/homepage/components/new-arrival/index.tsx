@@ -44,7 +44,7 @@ export default function NewArrival() {
   <div className="flex items-center justify-center w-full h-full ">
     <Image
       src="/images/womens-collection.png"
-      alt="Women's Collections"
+      alt="Women Collections"
       width={600} 
       height={40}
       className="object-contain"
@@ -53,7 +53,7 @@ export default function NewArrival() {
   </div>
 
   <div className="absolute bottom-0 left-0 z-10 p-8">
-    <h3 className="text-xl font-semibold mb-2">Women's Collections</h3>
+    <h3 className="text-xl font-semibold mb-2">Women Collections</h3>
     <p className="text-gray-300 mb-3 text-sm max-w-xs">
       Featured woman collections that give you another vibe.
     </p>

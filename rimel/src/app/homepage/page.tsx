@@ -7,7 +7,7 @@ import Category from "./components/categories";
 import ExploreProducts from "./components/explore";
 import FeaturedBanner from "./components/featured";
 import HeroSection from "./components/landing-page";
-import NewArrival from "./components/new -arrival";
+import NewArrival from "./components/new-arrival";
 import Services from "./components/services";
 import BestSelling from "./components/this-month";
 import FlashSales from "./components/todays-deals";

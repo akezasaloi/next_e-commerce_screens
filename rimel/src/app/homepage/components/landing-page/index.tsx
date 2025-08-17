@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaChevronRight, FaApple } from "react-icons/fa";
+import Image from "next/image";
 
 const HeroSection = () => {
   const categories = [
@@ -57,7 +58,7 @@ const HeroSection = () => {
                 </Link>
               </div>
               <div className="flex-1 relative">
-                <img 
+                <Image
                   src="/images/iphone-hero.png" 
                   alt="iPhone 14 Series" 
                   className="w-full h-full object-contain"
