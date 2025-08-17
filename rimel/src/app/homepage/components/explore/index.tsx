@@ -1,169 +1,193 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { FiHeart, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import Button from "@/app/shared-components/Button";
 
+const products = [
+  {
+    id: 1,
+    name: "Breed Dry Dog Food",
+    price: 100,
+    rating: 3,
+    reviews: 35,
+    image: "/images/dog-food.png",
+    isNew: true
+  },
+  {
+    id: 2,
+    name: "CANON EOS DSLR Camera",
+    price: 360,
+    rating: 4,
+    reviews: 95,
+    image: "/images/canon-camera.png",
+    isCart: true
+  },
+  {
+    id: 3,
+    name: "ASUS FHD Gaming Laptop",
+    price: 700,
+    rating: 5,
+    reviews: 325,
+    image: "/images/asus-laptop.png"
+  },
+  {
+    id: 4,
+    name: "Curology Product Set",
+    price: 500,
+    rating: 4,
+    reviews: 145,
+    image: "/images/curology-set.png"
+  },
+  {
+    id: 5,
+    name: "Kids Electric Car",
+    price: 960,
+    rating: 5,
+    reviews: 65,
+    image: "/images/kids-car.png",
+    isNew: true,
+    colors: ["#DB4444", "#000"]
+  },
+  {
+    id: 6,
+    name: "Jr. Zoom Soccer Cleats",
+    price: 1160,
+    rating: 5,
+    reviews: 35,
+    image: "/images/soccer-cleats.png",
+    colors: ["#FFD600", "#000"]
+  },
+  {
+    id: 7,
+    name: "GP11 Shooter USB Gamepad",
+    price: 660,
+    rating: 4,
+    reviews: 55,
+    image: "/images/gamepad-gp11.png",
+    isNew: true,
+    colors: ["#DB4444", "#000"]
+  },
+  {
+    id: 8,
+    name: "Quilted Satin Jacket",
+    price: 660,
+    rating: 4,
+    reviews: 55,
+    image: "/images/satin-jacket.png",
+    colors: ["#009688", "#FF6B00"]
+  }
+];
 
-interface Product {
-  id: string | number;
-  name: string;
-  image: string;
-  price: number;
-  oldPrice?: number;
-  rating: number;
-  reviews: number;
-  isNew?: boolean;
-  isCart?: boolean;
-  colors?: string[];
-}
 
 function ProductStars({ rating }: { rating: number }) {
-  const fullStars = Math.floor(rating);
-  const hasHalf = rating % 1 >= 0.5;
-  const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
   return (
-    <span className="flex items-center">
-      {[...Array(fullStars)].map((_, i) => (
-        <FaStar key={"f" + i} className="text-yellow-400 mr-0.5" />
-      ))}
-      {hasHalf && <FaStarHalfAlt className="text-yellow-400 mr-0.5" />}
-      {[...Array(emptyStars)].map((_, i) => (
-        <FaRegStar key={"e" + i} className="text-yellow-400 mr-0.5" />
+    <span className="flex items-center text-[15px]">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <span key={star} className={`mr-[1px] ${star <= rating ? "text-[#FFAD33]" : "text-[#CACACA]"}`}>
+          ★
+        </span>
       ))}
     </span>
   );
 }
 
-export default function ExploreProducts({
-  products,
-  page,
-  setPage,
-  itemsPerPage = 10,
-  maxPage,
-}: {
-  products: Product[];
-  page: number;
-  setPage: (page: number) => void;
-  itemsPerPage?: number;
-  maxPage: number;
-}) {
-  const visibleProducts = products.slice(
-    page * itemsPerPage,
-    (page + 1) * itemsPerPage
+
+function ColorOptions({ colors }: { colors?: string[] }) {
+  const [selected, setSelected] = useState<number | null>(null);
+  if (!colors) return null;
+  return (
+    <div className="flex gap-2 mt-2">
+      {colors.map((color, idx) => (
+        <button
+          key={color + idx}
+          type="button"
+          aria-label={`Select color`}
+          className={`w-4 h-4 rounded-full border-2 flex-shrink-0
+            ${selected === idx ? "border-black ring-2 ring-offset-2 ring-[#DB4444]" : "border-gray-300"}
+          `}
+          style={{ background: color, outline: "none" }}
+          onClick={() => setSelected(selected === idx ? null : idx)}
+        />
+      ))}
+    </div>
   );
+}
+
+export default function ExploreProducts() {
 
   return (
-    <section className="w-full py-1 bg-white">
-      <div className="w-full mx-auto ">
-        <div className="flex justify-between items-end mb-7">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-5 h-10 rounded ml-0 bg-[#DB4444]"></span>
-              <span className="font-semibold text-lg ml-2 text-[#DB4444]">
-                Our Products
-              </span>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200">
+      {/* Section Header */}
+      <div className="flex items-center space-x-4 mb-6">
+        <div className="w-5 h-10 bg-[#DB4444] rounded"></div>
+        <span className="text-[#DB4444] font-semibold">Our Products</span>
+      </div>
+
+      <h2 className="text-4xl font-semibold text-gray-900 mb-8">Explore Our Products</h2>
+
+
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 mb-8">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="group relative bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow"
+            style={{ margin: "0" }}
+          >
+            <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+              <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
+                <FiHeart className="h-4 w-4 text-gray-600" />
+              </button>
+              <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
+                <IoEyeOutline className="h-4 w-4 text-gray-600" />
+              </button>
             </div>
-            <h2 className="font-inter font-semibold text-[32px] text-black">
-              Explore Our Products
-            </h2>
-          </div>
-          <div className="flex gap-2 items-center">
-            <button
-              className={`rounded-full bg-white shadow text-black w-9 h-9 flex items-center justify-center border border-gray-200 ${
-                page === 0 ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              onClick={() => setPage(Math.max(page - 1, 0))}
-              aria-label="Scroll Left"
-              disabled={page === 0}
-              type="button"
-            >
-              <FiChevronLeft size={22} />
-            </button>
-            <button
-              className={`rounded-full bg-white shadow text-black w-9 h-9 flex items-center justify-center border border-gray-200 ${
-                page >= maxPage ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              onClick={() => setPage(Math.min(page + 1, maxPage))}
-              aria-label="Scroll Right"
-              disabled={page >= maxPage}
-              type="button"
-            >
-              <FiChevronRight size={22} />
-            </button>
-          </div>
-        </div>
-        <div className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-          {visibleProducts.map((product) => (
-            <div
-              className="w-[220px] relative bg-[#FAFAFA] rounded-lg shadow-sm min-h-[322px] flex flex-col items-center border border-gray-100"
-              key={product.id}
-            >
-              {product.isNew && (
-                <span className="absolute top-4 left-4 bg-[#00FF80] text-white text-xs px-2 py-1 rounded">
-                  NEW
-                </span>
-              )}
-              <div className="absolute top-4 right-4 flex flex-col gap-2">
-                <button className="bg-white rounded-full border border-gray-200 w-8 h-8 flex items-center justify-center">
-                  <FiHeart size={18} className="text-black" />
-                </button>
-                <button className="bg-white rounded-full border border-gray-200 w-8 h-8 flex items-center justify-center">
-                  <IoEyeOutline className="text-black" size={18} />
-                </button>
-              </div>
+            <div className="relative bg-gray-100 h-52 flex items-center justify-center">
               <Image
                 src={product.image}
                 alt={product.name}
-                width={140}
-                height={120}
-                className="w-[140px] h-[120px] object-contain mt-14"
+                width={160}
+                height={130}
+                className="w-[120px] h-[100px] object-contain"
+                unoptimized
               />
-              {product.isCart && (
-                <button className="mt-4 w-full bg-black text-white rounded text-base font-medium py-2">
-                  Add To Cart
-                </button>
+
+              {product.isNew && (
+                <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                  NEW
+                </div>
               )}
-              <div className="mt-auto w-full text-left px-4 pb-3">
-                <div className="font-medium text-base mt-4 text-black">
-                  {product.name}
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[#DB4444] font-semibold">
-                    ${product.price}
-                  </span>
-                  {product.oldPrice && (
-                    <span className="text-gray-400 line-through text-sm">
-                      ${product.oldPrice}
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-center gap-1 text-sm">
-                  <ProductStars rating={product.rating} />
-                  <span className="text-gray-500 ml-1">
-                    ({product.reviews})
-                  </span>
-                </div>
-                {product.colors && (
-                  <div className="flex gap-2 mt-2">
-                    {product.colors.map((color, idx) => (
-                      <span
-                        key={color + idx}
-                        style={{ background: color }}
-                        className="w-4 h-4 rounded-full border border-gray-200 inline-block"
-                      ></span>
-                    ))}
-                  </div>
-                )}
-              </div>
+
+              <button
+                className={`
+                  absolute bottom-0 left-0 right-0 bg-black text-white py-2 font-semibold transition-opacity
+                  ${product.isCart ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
+                `}
+              >
+                Add To Cart
+              </button>
             </div>
-          ))}
-        </div>
-        <div className="text-center mt-8">
-          <Button onClick={() => {}}>
-            View All Products
-          </Button>
-        </div>
+
+            <div className="p-3">
+              <h3 className="text-black font-medium mb-2 text-[16px]">{product.name}</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[#DB4444] font-semibold">${product.price}</span>
+              </div>
+              <div className="flex items-center gap-1 mb-1">
+                <ProductStars rating={product.rating} />
+                <span className="text-gray-500 text-xs ml-1">({product.reviews})</span>
+              </div>
+              <ColorOptions colors={product.colors} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center">
+        <button className="bg-[#DB4444] hover:bg-[#b92c2c] text-white px-8 py-3 rounded transition-colors font-semibold text-base">
+          View All Products
+        </button>
       </div>
     </section>
   );

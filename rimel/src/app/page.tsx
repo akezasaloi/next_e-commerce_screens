@@ -1,13 +1,14 @@
 import Link from "next/link";
+import SignUp from "./signup";
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className=" bg-white">
+      <SignUp/>
       <Link
         href="/homepage"
         className="text-lg text-red-600 font-semibold underline hover:no-underline"
       >
-        Homepage
       </Link>
     </div>
   );

@@ -1,116 +1,124 @@
-
-
 'use client';
-import { useState } from 'react';
-import { AiOutlineHeart, AiFillHeart, AiOutlineEye, AiFillEye } from 'react-icons/ai';
-import { FaStar } from 'react-icons/fa';
-type Product = {
- name: string;
- price: number;
- originalPrice?: number;
- image: string;
- imageClass?: string;
- reviews: number;
-};
-const products: Product[] = [
- {
-   name: 'The north coat',
-   price: 260,
-   originalPrice: 360,
-   image: '/images/north-coat.jpg',
-   imageClass: 'w-[60%] h-[45%]',
-   reviews: 65,
- },
- {
-   name: 'Gucci duffle bag',
-   price: 960,
-   originalPrice: 1160,
-   image: '/images/gucci-bag.jpg',
-   imageClass: 'w-[80%] h-[45%]',
-   reviews: 65,
- },
- {
-   name: 'RGB liquid CPU cooler',
-   price: 160,
-   originalPrice: 170,
-   image: '/images/cpu-cooler.jpg',
-   imageClass: 'rounded-lg object-coverhover:grayscale-0 transition w-[90%] h-[45%] mx-auto mt-10 sm:ml-[-5%]',
-   reviews: 65,
- },
- {
-   name: 'Small bookshelf',
-   price: 360,
-   image: '/images/bookshelf.jpg',
-   reviews: 65,
- },
+import { FiHeart } from "react-icons/fi";
+import { IoEyeOutline } from "react-icons/io5";
+import Image from "next/image";
+
+const products = [
+  {
+    id: 1,
+    name: "The north coat",
+    price: 260,
+    originalPrice: 360,
+    rating: 5,
+    reviews: 65,
+    image: "/images/north-coat.png"
+  },
+  {
+    id: 2,
+    name: "Gucci duffle bag",
+    price: 960,
+    originalPrice: 1160,
+    rating: 4,
+    reviews: 65,
+    image: "/images/gucci-bag.png"
+  },
+  {
+    id: 3,
+    name: "RGB liquid CPU Cooler",
+    price: 160,
+    originalPrice: 170,
+    rating: 4,
+    reviews: 65,
+    image: "/images/cpu-cooler.png"
+  },
+  {
+    id: 4,
+    name: "Small BookShelf",
+    price: 360,
+    originalPrice: null,
+    rating: 5,
+    reviews: 65,
+    image: "/images/bookshelf.png"
+  }
 ];
-export default function SellingProducts() {
- return (
-   <section className="font-poppins p-6">
-     <div className="flex justify-between items-center mb-6">
-       <div className="relative group">
-         <div className='flex gap-4.5 mb-9'>
-           <p className='border-red-400 bg-red-400 text-red-400 w-3.5 h-9 rounded-sm'>.</p>
-           <p className='text-red-400 text-[16px] mt-1.5'>This Month</p>
-         </div>
-         <h2 className="text-2xl font-semibold">Best Selling Products</h2>
-       </div>
-       <button className="border pl-7.5 pr-7.5 pt-2.5 pb-2.5 bg-red-400 rounded-sm text-white text-sm font-medium hover:underline">
-         View All
-       </button>
-     </div>
-     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ml-12 ">
-       {products.map((product) => {
-         const [liked, setLiked] = useState(false);
-         const [viewed, setViewed] = useState(false);
-         return (
-           <div key={product.name} className="p-4 hover:shadow-lg transition relative">
-             <div className="relative ml-5 mb-4 border-gray-100 rounded-lg bg-gray-100 w-70.5 p-4">
-               <img
-                 src={product.image}
-                 alt={product.name}
-                 className={`h-40 object-cover rounded ${product.imageClass || ''}`}
-               />
-               <div className="absolute top-2 right-2 flex flex-col gap-2 text-gray-600">
-                 <button onClick={() => setLiked(!liked)}>
-                   {liked ? (
-                     <AiFillHeart className="text-red-500 mb-4.5 cursor-pointer" />
-                   ) : (
-                     <AiOutlineHeart className="mb-4.5 cursor-pointer hover:text-red-500" />
-                   )}
-                 </button>
-                 <button onClick={() => setViewed(!viewed)}>
-                   {viewed ? (
-                     <AiFillEye className="text-blue-500 cursor-pointer" />
-                   ) : (
-                     <AiOutlineEye className="cursor-pointer hover:text-blue-500" />
-                   )}
-                 </button>
-               </div>
-             </div>
-             <h3 className="text-lg font-medium mb-1">{product.name}</h3>
-             <div className="flex items-center gap-2 mb-2">
-               <span className="text-red-500 font-semibold">${product.price}</span>
-               {product.originalPrice && (
-                 <span className="line-through text-gray-400 text-sm">
-                   ${product.originalPrice}
-                 </span>
-               )}
-             </div>
-             <div className="flex items-center gap-1 text-yellow-500 text-sm">
-               {Array(5)
-                 .fill(0)
-                 .map((_, i) => (
-                   <FaStar key={i} />
-                 ))}
-               <span className="text-gray-600 ml-2">({product.reviews})</span>
-             </div>
-           </div>
-         );
-       })}
-     </div>
-   </section>
- );
+
+function renderStars(rating: number) {
+  return (
+    <span className="flex items-center">
+      {[...Array(5)].map((_, i) =>
+        i < rating ? (
+          <span key={i} className="text-yellow-400">★</span>
+        ) : (
+          <span key={i} className="text-yellow-400">☆</span>
+        )
+      )}
+    </span>
+  );
 }
 
+export default function BestSelling() {
+  return (
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-b border-gray-200">
+      {/* Section Header */}
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-5 h-10 rounded bg-[#DB4444]"></span>
+        <span className="font-semibold text-lg text-[#DB4444]">This Month</span>
+      </div>
 
+      <div className="flex items-end justify-between mb-4">
+        <h2 className="text-4xl font-semibold text-black">Best Selling Products</h2>
+        <button className="bg-[#DB4444] hover:bg-red-600 text-white px-8 py-3 rounded transition-colors font-semibold text-base">
+          View All
+        </button>
+      </div>
+
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="group relative bg-[#FAFAFA] rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+            {/* Product Image */}
+            <div className="relative bg-gray-100 h-64 flex items-center justify-center">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={180}
+                height={160}
+                className="w-full h-full object-contain p-4"
+              />
+
+              {/* Action Buttons */}
+              <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
+                  <FiHeart className="h-5 w-5 text-black" />
+                </button>
+                <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
+                  <IoEyeOutline className="h-5 w-5 text-black" />
+                </button>
+              </div>
+
+              {/* Add to Cart Button */}
+              <button className="absolute bottom-0 left-0 right-0 bg-black text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                Add To Cart
+              </button>
+            </div>
+
+            {/* Product Info */}
+            <div className="p-4">
+              <h3 className="text-black font-medium mb-2">{product.name}</h3>
+              <div className="flex items-center space-x-2 mb-2">
+                <span className="text-[#DB4444] font-semibold">${product.price}</span>
+                {product.originalPrice && (
+                  <span className="text-gray-400 line-through">${product.originalPrice}</span>
+                )}
+              </div>
+              <div className="flex items-center space-x-2">
+                {renderStars(product.rating)}
+                <span className="text-gray-500 text-sm">({product.reviews})</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
