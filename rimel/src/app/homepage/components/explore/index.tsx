@@ -119,7 +119,7 @@ export default function ExploreProducts() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200">
-      {/* Section Header */}
+
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded"></div>
         <span className="text-[#DB4444] font-semibold">Our Products</span>

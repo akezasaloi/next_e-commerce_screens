@@ -6,7 +6,6 @@ import Link from "next/link";
 export default function NewArrival() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200">
-      {/* Section Header */}
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded"></div>
         <span className="text-[#DB4444] font-semibold">Featured</span>
@@ -14,9 +13,7 @@ export default function NewArrival() {
 
       <h2 className="text-4xl font-semibold text-gray-900 mb-8">New Arrival</h2>
 
-      {/* Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[600px]">
-        {/* PlayStation 5 - Large Item */}
         <div className="bg-black text-white rounded-lg overflow-hidden relative flex items-end min-h-[280px]">
           <div className="absolute inset-0">
             <Image

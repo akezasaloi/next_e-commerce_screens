@@ -18,7 +18,6 @@ const HeroSection = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex">
-        {/* Sidebar Categories */}
         <div className="hidden lg:block w-64 border-r border-gray-200 pr-8">
           <nav className="py-6 space-y-4">
             {categories.map((category, index) => (
@@ -36,7 +35,6 @@ const HeroSection = () => {
           </nav>
         </div>
 
-        {/* Hero Banner */}
         <div className="flex-1 lg:pl-8">
           <div className="bg-black text-white rounded-lg overflow-hidden relative">
             <div className="flex items-center h-80 lg:h-96">
@@ -66,7 +64,6 @@ const HeroSection = () => {
               </div>
             </div>
             
-            {/* Dot indicators */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {[0, 1, 2, 3, 4].map((dot) => (
                 <button

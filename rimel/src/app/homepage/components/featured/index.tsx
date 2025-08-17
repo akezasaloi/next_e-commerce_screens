@@ -4,13 +4,11 @@ const FeaturedBanner = () => {
   return (
     <section className="flex justify-center py-16">
       <div className="w-full max-w-[1200px] bg-black  overflow-hidden flex flex-col md:flex-row items-center shadow-lg min-h-[340px] px-10 md:px-14 py-12 gap-x-8">
-        {/* Left Side */}
         <div className="flex-1 flex flex-col justify-center gap-6 pr-3">
           <span className="text-[#00FF66] text-lg font-semibold mb-2">Categories</span>
           <h2 className="text-white text-4xl md:text-5xl font-bold leading-tight mb-4" style={{lineHeight: "1.1"}}>
             Enhance Your<br />Music Experience
           </h2>
-          {/* Countdown circles */}
           <div className="flex gap-6 mb-8 mt-2">
             {[
               { value: "23", label: "Hours" },
@@ -28,7 +26,6 @@ const FeaturedBanner = () => {
             Buy Now!
           </button>
         </div>
-        {/* Right Side: Speaker Image */}
         <div className="flex-1 flex items-center justify-center relative min-h-[170px] md:min-h-[340px]">
           <Image
             src="/images/speaker-featured.png"

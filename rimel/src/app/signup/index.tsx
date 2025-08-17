@@ -9,7 +9,6 @@ import Footer from "../shared-components/Footer";
 export default function SignUp() {
   const router = useRouter();
 
-  // Handle create account and redirect to login
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/login");
@@ -18,9 +17,7 @@ export default function SignUp() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Header />
-      {/* Main content fills the screen, side by side, no margin */}
       <div className="flex flex-1 w-full">
-        {/* Image Side */}
         <div className="w-1/2 flex items-stretch bg-[#E3F0FF]">
           <div className="flex items-center justify-center w-full">
             <Image
@@ -33,7 +30,6 @@ export default function SignUp() {
             />
           </div>
         </div>
-        {/* Sign Up Side */}
         <div className="w-1/2 flex items-center justify-center bg-white">
           <div className="w-full max-w-md p-8">
             <div className="mb-8">

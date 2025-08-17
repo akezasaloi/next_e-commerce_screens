@@ -122,7 +122,6 @@ export default function FlashSales() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Section Header */}
       <div className="flex items-center gap-2 mb-4">
         <span className="w-5 h-10 rounded bg-[#DB4444]"></span>
         <span className="font-semibold text-lg text-[#DB4444]">Today&apos;s </span>
@@ -131,7 +130,6 @@ export default function FlashSales() {
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-4 gap-4">
         <div className="flex flex-col md:flex-row items-start md:items-end gap-8">
           <h2 className="text-4xl font-semibold text-black">Flash Sales</h2>
-          {/* Countdown Timer */}
           <div className="flex items-center gap-2 mt-2 md:mt-0">
             {[
               { value: countdown.days, label: "Days" },
@@ -150,7 +148,6 @@ export default function FlashSales() {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
         <div className="flex gap-4">
           <button
             className={`rounded-full bg-white shadow text-black w-9 h-9 flex items-center justify-center border border-gray-200 hover:bg-gray-200 transition-colors ${
@@ -175,18 +172,15 @@ export default function FlashSales() {
         </div>
       </div>
 
-      {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {pagedProducts.map((product) => (
           <div
             key={product.id}
             className="group relative bg-[#FAFAFA] rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
           >
-            {/* Discount Badge */}
             <span className="absolute top-4 left-4 bg-[#DB4444] text-white text-xs px-2 py-1 rounded">
               -{product.discount}%
             </span>
-            {/* Action Buttons */}
             <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
               <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
                 <FiHeart className="h-5 w-5 text-black" />
@@ -195,7 +189,6 @@ export default function FlashSales() {
                 <IoEyeOutline className="h-5 w-5 text-black" />
               </button>
             </div>
-            {/* Product Image */}
             <div className="relative bg-gray-100 h-64 flex items-center justify-center">
             <Image
               src={product.image}
@@ -204,12 +197,10 @@ export default function FlashSales() {
               height={120}
               className="w-[140px] h-[120px] object-contain mt-14"
             />
-              {/* Add to Cart Button */}
               <button className="absolute bottom-0 left-0 right-0 bg-black text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 Add To Cart
               </button>
             </div>
-            {/* Product Info */}
             <div className="p-4">
               <h3 className="text-black font-medium mb-2">{product.name}</h3>
               <div className="flex items-center space-x-2 mb-2">
