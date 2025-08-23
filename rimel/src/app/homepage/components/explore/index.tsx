@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {  FiHeart } from "react-icons/fi";
+import { FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
+import { IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 
 const products = [
   {
@@ -80,19 +81,23 @@ const products = [
   }
 ];
 
-
 function ProductStars({ rating }: { rating: number }) {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars.push(<IoMdStarOutline key={i} className="text-[#FFAD33] mr-[1px]" />);
+    } else if (rating >= i - 0.5) {
+      stars.push(<IoMdStarHalf key={i} className="text-[#FFAD33] mr-[1px]" />);
+    } else {
+      stars.push(<IoMdStarOutline key={i} className="text-[#CACACA] mr-[1px]" />);
+    }
+  }
   return (
-    <span className="flex items-center text-[15px]">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span key={star} className={`mr-[1px] ${star <= rating ? "text-[#FFAD33]" : "text-[#CACACA]"}`}>
-          ★
-        </span>
-      ))}
+    <span className="flex items-center text-[17px]">
+      {stars}
     </span>
   );
 }
-
 
 function ColorOptions({ colors }: { colors?: string[] }) {
   const [selected, setSelected] = useState<number | null>(null);
@@ -116,18 +121,13 @@ function ColorOptions({ colors }: { colors?: string[] }) {
 }
 
 export default function ExploreProducts() {
-
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200">
-
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded"></div>
         <span className="text-[#DB4444] font-semibold">Our Products</span>
       </div>
-
       <h2 className="text-4xl font-semibold text-gray-900 mb-8">Explore Our Products</h2>
-
-
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 mb-8">
         {products.map((product) => (
           <div
@@ -152,13 +152,11 @@ export default function ExploreProducts() {
                 className="w-[120px] h-[100px] object-contain"
                 unoptimized
               />
-
               {product.isNew && (
                 <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
                   NEW
                 </div>
               )}
-
               <button
                 className={`
                   absolute bottom-0 left-0 right-0 bg-black text-white py-2 font-semibold transition-opacity
@@ -168,7 +166,6 @@ export default function ExploreProducts() {
                 Add To Cart
               </button>
             </div>
-
             <div className="p-3">
               <h3 className="text-black font-medium mb-2 text-[16px]">{product.name}</h3>
               <div className="flex items-center gap-2 mb-2">
@@ -183,7 +180,6 @@ export default function ExploreProducts() {
           </div>
         ))}
       </div>
-
       <div className="text-center">
         <button className="bg-[#DB4444] hover:bg-[#b92c2c] text-white px-8 py-3 rounded transition-colors font-semibold text-base">
           View All Products

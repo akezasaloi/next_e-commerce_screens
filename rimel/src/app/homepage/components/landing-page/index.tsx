@@ -59,6 +59,8 @@ const HeroSection = () => {
                 <Image
                   src="/images/iphone-hero.png" 
                   alt="iPhone 14 Series" 
+                  width={500} 
+                  height={500}
                   className="w-full h-full object-contain"
                 />
               </div>

@@ -1,9 +1,10 @@
-import SignUp from "./signup";
+import Home from "./homepage/page";
 
-export default function Home() {
+
+export default function Homepage() {
   return (
-    <div className=" bg-white">
-      <SignUp/>
+    <div>
+      <Home/>
     </div>
   );
 }

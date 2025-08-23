@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight, FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 
 const products = [
   {
@@ -98,11 +98,11 @@ function ProductStars({ rating }: { rating: number }) {
   return (
     <span className="flex items-center">
       {[...Array(fullStars)].map((_, i) => (
-        <FaStar key={"f" + i} className="text-yellow-400 mr-0.5" />
+        <IoMdStarOutline key={"f" + i} className="text-yellow-400 mr-0.5" />
       ))}
-      {hasHalf && <FaStarHalfAlt className="text-yellow-400 mr-0.5" />}
+      {hasHalf && <IoMdStarHalf className="text-yellow-400 mr-0.5" />}
       {[...Array(emptyStars)].map((_, i) => (
-        <FaRegStar key={"e" + i} className="text-yellow-400 mr-0.5" />
+        <IoMdStarOutline key={"e" + i} className="text-gray-300 mr-0.5" />
       ))}
     </span>
   );

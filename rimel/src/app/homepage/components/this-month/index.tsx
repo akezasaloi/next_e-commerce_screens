@@ -1,6 +1,7 @@
 'use client';
 import { FiHeart } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
+import { IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 import Image from "next/image";
 
 const products = [
@@ -43,15 +44,19 @@ const products = [
 ];
 
 function renderStars(rating: number) {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars.push(<IoMdStarOutline key={i} className="text-yellow-400" />);
+    } else if (rating >= i - 0.5) {
+      stars.push(<IoMdStarHalf key={i} className="text-yellow-400" />);
+    } else {
+      stars.push(<IoMdStarOutline key={i} className="text-gray-300" />);
+    }
+  }
   return (
     <span className="flex items-center">
-      {[...Array(5)].map((_, i) =>
-        i < rating ? (
-          <span key={i} className="text-yellow-400">★</span>
-        ) : (
-          <span key={i} className="text-yellow-400">☆</span>
-        )
-      )}
+      {stars}
     </span>
   );
 }
@@ -63,14 +68,12 @@ export default function BestSelling() {
         <span className="w-5 h-10 rounded bg-[#DB4444]"></span>
         <span className="font-semibold text-lg text-[#DB4444]">This Month</span>
       </div>
-
       <div className="flex items-end justify-between mb-4">
         <h2 className="text-4xl font-semibold text-black">Best Selling Products</h2>
         <button className="bg-[#DB4444] hover:bg-red-600 text-white px-8 py-3 rounded transition-colors font-semibold text-base">
           View All
         </button>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <div key={product.id} className="group relative bg-[#FAFAFA] rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
@@ -82,7 +85,6 @@ export default function BestSelling() {
                 height={160}
                 className="w-full h-full object-contain p-4"
               />
-
               <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 flex items-center justify-center">
                   <FiHeart className="h-5 w-5 text-black" />
@@ -91,12 +93,10 @@ export default function BestSelling() {
                   <IoEyeOutline className="h-5 w-5 text-black" />
                 </button>
               </div>
-
               <button className="absolute bottom-0 left-0 right-0 bg-black text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 Add To Cart
               </button>
             </div>
-
             <div className="p-4">
               <h3 className="text-black font-medium mb-2">{product.name}</h3>
               <div className="flex items-center space-x-2 mb-2">

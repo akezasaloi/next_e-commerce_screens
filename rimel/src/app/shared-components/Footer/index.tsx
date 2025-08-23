@@ -60,10 +60,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Download App</h3>
             <p className="text-gray-300 text-xs">Save $3 with App New User Only</p>
             <div className="grid grid-cols-2 gap-2">
-              <Image src="/images/qr-code.png" alt="QR Code" className="w-20 h-20" />
+            <Image
+              src="/images/qr-code.png"
+              alt="QR Code"
+              width={80}
+              height={80}
+              className="w-20 h-20"
+            />
               <div className="space-y-2">
-                <Image src="/images/google-play-badge.png" alt="Google Play" className="w-24 h-8" />
-                <Image src="/images/app-store-badge.png" alt="App Store" className="w-24 h-8" />
+                <Image src="/images/google-play-badge.png" alt="Google Play" width={80} height={80} className="w-24 h-8" />
+                <Image src="/images/app-store-badge.png" alt="App Store" width={80} height={80} className="w-24 h-8" />
               </div>
             </div>
             <div className="flex space-x-4 pt-2">

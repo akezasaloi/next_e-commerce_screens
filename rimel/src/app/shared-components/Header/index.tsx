@@ -24,13 +24,13 @@ const Header = () => {
             </Link>
 
             <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
+              <Link href="/homepage" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
                 Home
               </Link>
-              <Link href="/contact" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
+              <Link href="#" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
                 Contact
               </Link>
-              <Link href="/about" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
+              <Link href="#" className="text-gray-900  hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
                 About
               </Link>
               <Link href="/signup" className="text-gray-900 hover:text-gray-950 border-b-2 border-transparent hover:border-b-gray-700 pb-1 transition-colors">
